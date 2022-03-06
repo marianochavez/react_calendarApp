@@ -2,7 +2,7 @@ import { types } from "../types/types";
 
 
 const initialState = {
-    checking: true,
+    checking: false,
     // uid: null,
     // name: null
 };

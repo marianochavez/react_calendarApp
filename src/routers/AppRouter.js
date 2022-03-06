@@ -19,7 +19,7 @@ export const AppRouter = () => {
     dispatch(startChecking());
   }, [dispatch]);
 
-  if (checking) {
+  if ( checking ) {
     return (
       <div>
         {/* Loading screen */}
