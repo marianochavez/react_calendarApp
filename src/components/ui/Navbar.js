@@ -14,7 +14,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-dark bg-dark navbar-expand-md justify-content-center">
       <div className="container">
-        <p className="navbar-brand d-flex w-50 m-auto">{name}</p>
+        <p className="navbar-brand d-flex w-50 m-auto">Bienvenido, {name}!</p>
         <button
           className="navbar-toggler"
           type="button"
