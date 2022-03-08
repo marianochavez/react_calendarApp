@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import Modal from "react-modal/lib/components/Modal";
-import DateTimePicker from "react-datetime-picker";
+import { useDispatch, useSelector } from "react-redux";
+
 import moment from "moment";
+import Modal from "react-modal";
+import DateTimePicker from "react-datetime-picker";
 import Swal from "sweetalert2";
 
-import { useDispatch, useSelector } from "react-redux";
 import { uiCloseModal } from "../../actions/ui";
 import {
   eventClearActiveEvent,
@@ -23,7 +24,9 @@ const customStyles = {
   },
 };
 
-Modal.setAppElement("#root");
+if ( process.env.NODE_ENV !== 'test' ) {
+  Modal.setAppElement('#root');
+}
 
 const now = moment().minutes(0).seconds(0).add(1, "hours");
 const noPlusOne = now.clone().add(1, "hours");
@@ -36,6 +39,7 @@ const initEvent = {
 };
 
 export const CalendarModal = () => {
+
   const dispatch = useDispatch();
 
   const { modalOpen } = useSelector((state) => state.ui);
@@ -122,6 +126,7 @@ export const CalendarModal = () => {
       closeTimeoutMS={200}
       className="modal"
       overlayClassName="modal-fondo"
+      ariaHideApp={ !process.env.NODE_ENV === 'test' }
     >
       <h1> { (activeEvent) ? 'Editar evento' : 'Nuevo evento'} </h1>
       <hr />
