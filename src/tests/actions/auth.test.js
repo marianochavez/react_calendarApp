@@ -124,6 +124,10 @@ describe('Pruebas en las acciones Auth', () => {
         const actions = store.getActions();
         
         expect( actions[0] ).toEqual({
+            type: types.authCheckingStart
+        });
+
+        expect( actions[1] ).toEqual({
             type: types.authLogin,
             payload: {
                 uid: '123',
