@@ -58,7 +58,7 @@ export const startRegister = (name, email, password) => {
 
 export const startChecking = () => {
   return async (dispatch) => {
-
+    dispatch(checkingStart());
     const res = await fetchWithToken("auth/renew");
     const body = await res.json();
 
@@ -80,6 +80,10 @@ export const startChecking = () => {
 
 const checkingFinish = () => ({
     type: types.authCheckingFinish,
+});
+
+const checkingStart = () => ({
+    type: types.authCheckingStart,
 });
 
 const login = (user) => ({

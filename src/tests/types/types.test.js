@@ -16,7 +16,7 @@ describe("types tests", () => {
       eventDeleted: "[event] Event Deleted",
       eventLoaded: "[event] Event Loaded",
 
-      authChecking: "[auth] Checking login state",
+      authCheckingStart: "[auth] Checking login state",
       authCheckingFinish: "[auth] Checking login state finish",
       authStartLogin: "[auth] Start login",
       authLogin: "[auth] Login",
