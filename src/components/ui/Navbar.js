@@ -1,6 +1,8 @@
 import React from "react";
+import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { startLogout } from "../../actions/auth";
+import { Detector } from "react-detect-offline";
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -14,7 +16,30 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-dark bg-dark navbar-expand-md justify-content-center">
       <div className="container">
-        <p className="navbar-brand d-flex w-50 m-auto">Bienvenido, {name}!</p>
+        <Detector
+          render={({online}) => (
+            <p className="navbar-brand d-flex w-50 m-auto">
+              {name} - 
+              <span className={online?'text-success':'text-danger'}>
+                &nbsp;{online?'Online':'Offline'}
+              </span>
+            </p>
+          )}
+          onChange={ (online) => {
+            online ? 
+              Swal.fire({
+                title: "Conectado a internet",
+                icon:'info',
+                iconColor: 'green'
+              }) 
+              : Swal.fire({
+                title:'Sin conexión a internet',
+                text: 'Los cambios offline seran guardados',
+                icon:'warning',
+                iconColor: 'red'
+              })
+          }}
+        />
         <button
           className="navbar-toggler"
           type="button"
@@ -29,7 +54,7 @@ export const Navbar = () => {
               <button className="nav-link text-danger btn " onClick={handleLogout}>
                 Logout &nbsp;
                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
-              </button> 
+              </button>
             </li>
           </ul>
         </div>
